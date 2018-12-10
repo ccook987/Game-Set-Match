@@ -8,6 +8,7 @@ export const requestGame = (title, localGameId) => ({
   localGameId
 });
 
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export function fetchGameTitle(title) {
   return function (dispatch) {
@@ -18,7 +19,7 @@ export function fetchGameTitle(title) {
     return fetch('https://api-endpoint.igdb.com/games/?search=' + title + '&fields=name', {
       headers : {
         'Accept': 'application/json',
-        'user-key': 'cc4faccf4bb21195945f3fc62d5e08fd'
+        'user-key': API_KEY
        }
 
     })
