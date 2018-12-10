@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import gameSelectionReducer from './reducers/gameSelectionReducer';
 import thunkMiddleware from 'redux-thunk';
 
+var firebase = require('firebase');
+var firebaseui = require('firebaseui');
 
 const store = createStore(gameSelectionReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
