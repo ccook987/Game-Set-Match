@@ -30,8 +30,8 @@ function GameSearch({dispatch}){
 
 const mapStateToProps = state => {
   return {
-    name: state.gameById.name,
-    id: state.gameById.id
+    name: state.gameById,
+    id: state.gameById
   };
 };
 
@@ -39,4 +39,4 @@ GameSearch.propTypes = {
   dispatch: PropTypes.func
 };
 
-export default connect()(GameSearch);
+export default connect(mapStateToProps)(GameSearch);

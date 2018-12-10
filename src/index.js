@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import middlewareLogger from './middleware/middleware-logger';
 import { Provider } from 'react-redux';
+import gameSelectionReducer from './reducers/gameSelectionReducer';
+import thunkMiddleware from 'redux-thunk';
 
-const store = createStore();
+
+const store = createStore(gameSelectionReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
 
 ReactDOM.render(
