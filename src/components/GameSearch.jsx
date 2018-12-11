@@ -3,9 +3,6 @@ import { fetchGameTitle } from './../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-
-
-
 function GameSearch({dispatch, id}){
   let input;
   return (
@@ -19,7 +16,6 @@ function GameSearch({dispatch, id}){
           console.log('game searched:');
           console.log(input.value.trim());
           input.value = '';
-          // dispatch(receiveGames(id));
         }}>
         <input placeholder="Game Title" ref={node => {
             input = node;

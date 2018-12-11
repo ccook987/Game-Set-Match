@@ -1,14 +1,13 @@
 import constants from './../constants';
 const { initialState, types } = constants;
 
-const gameSelectionReducer = (state = initialState, action) => {
+const fetchGameResultsReducer = (state = initialState, action) => {
   switch (action.type) {
 
     // Mark the state as "loading" so we can show a spinner or something
     // Also, reset any errors. We're starting fresh.
     case types.FETCH_GAMES_BEGIN:
       return {
-        state,
         loading: true,
         error: null
       };
@@ -17,7 +16,6 @@ const gameSelectionReducer = (state = initialState, action) => {
       // Also, replace the games with the ones from the server
     case types.FETCH_GAMES_SUCCESS:
       return {
-        state,
         loading: false,
         gameArray: action.payload.games
       };
@@ -29,7 +27,6 @@ const gameSelectionReducer = (state = initialState, action) => {
       // around! Do whatever seems right.
     case types.FETCH_GAMES_FAILURE:
     return {
-      state,
       loading: false,
       error: action.payload.error,
       gameArray: []
@@ -43,4 +40,4 @@ const gameSelectionReducer = (state = initialState, action) => {
 }
 
 
-export default gameSelectionReducer;
+export default fetchGameResultsReducer;

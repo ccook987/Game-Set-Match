@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 
 
 class GameList extends React.Component {
-  // componentDidMount() {
-  //   this.props.dispatch(fetchGameTitle());
-  // }
 
   render() {
     const { error, loading, gameArray } = this.props;
