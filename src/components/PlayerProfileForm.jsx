@@ -5,10 +5,6 @@ class PlayerProfileForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playername: '',
-      platform: '',
-      gameTitle: '',
-      platformUserId: '',
       players: [],
       user: null
     }
@@ -33,17 +29,21 @@ class PlayerProfileForm extends Component {
       platform: this.state.platform,
       gameTitle: this.state.gameTitle,
       platformUserId: this.state.platformUserId,
-      user: this.state.user.displayName || this.state.user.email
+      user: this.state.user.displayName,
+      googleEmail: this.state.user.email
     }
     playerRef.push(player);
+    console.log(playerRef);
     this.setState({
       playername: '',
       platform: '',
       gameTitle: '',
       platformUserId: ''
     });
-    console.log(this.state.user.email);                                                                                                                                 
+    // console.log(this.state.user.email); // these two console logs match
+    // console.log(player.googleEmail);
   }
+
 
   logout() {
     auth.signOut()
@@ -59,7 +59,8 @@ class PlayerProfileForm extends Component {
       .then((result) => {
         const user = result.user;
         this.setState({
-          user
+          user,
+          // googleEmail: user.email
         });
       });
   }
@@ -75,7 +76,8 @@ class PlayerProfileForm extends Component {
           playername: players[player].playername,
           platform: players[player].platform,
           gameTitle: players[player].gameTitle,
-          platformUserId: players[player].platformUserId
+          platformUserId: players[player].platformUserId,
+          googleEmail: players[player].googleEmail
         })
       }
       this.setState({
@@ -86,11 +88,14 @@ class PlayerProfileForm extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
+
       }
     });
   }
 
   render() {
+    // console.log(this.state.user.displayName); can get to user but not the next one
+    console.log(this.state);
     return (
       <div>
         <div>
@@ -120,7 +125,7 @@ class PlayerProfileForm extends Component {
                         return (
                           <li key={player.id}>
                             <h3>{player.playername}
-                              {player.user === this.state.user.displayName || player.user === this.state.user.email ?
+                              {player.googleEmail === this.state.user.email ?
                   <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
                             </h3>
                             <p>Platform: {player.platform}</p>
