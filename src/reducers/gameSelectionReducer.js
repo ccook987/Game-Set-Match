@@ -8,13 +8,24 @@ const gameSelectionReducer = (state = initialState.gameById, action) => {
     case types.REQUEST_GAME:
       newGamesByIdEntry = {
         isFetching: true,
-        name: action.name,
+        title: action.title,
         id: action.id
       };
       newGamesByIdStateSlice = Object.assign({}, state, {
-        [action.id]: newGamesByIdEntry
+        [action.gameArray]: newGamesByIdEntry
       });
-      return newGamesByIdStateSlice
+      return newGamesByIdStateSlice;
+
+    case types.RECEIVE_GAMES:
+      newGamesByIdEntry = Object.assign({}, state[action.id], {
+        isFetching: false,
+        title: action.title,
+        id: action.id
+      });
+      newGamesByIdStateSlice = Object.assign({}, state, {
+        [action.gameArray]: newGamesByIdEntry
+      });
+      return newGamesByIdStateSlice;
 
   default:
     return state;

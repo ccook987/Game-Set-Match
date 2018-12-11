@@ -1,1 +1,2 @@
 export const REQUEST_GAME = 'REQUEST_GAME';
+export const RECEIVE_GAMES = 'RECEIVE_GAMES';

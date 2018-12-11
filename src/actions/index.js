@@ -8,7 +8,13 @@ export const requestGame = (title, localGameId) => ({
   localGameId
 });
 
-const API_KEY = process.env.VIDEO_GAME_API_KEY;
+export const receiveGames = (title, id) => ({
+  type: types.RECEIVE_GAMES,
+  title,
+  id
+})
+
+const API_KEY = process.env.REACT_APP_VIDEO_GAME_API_KEY;
 
 export function fetchGameTitle(title) {
   return function (dispatch) {

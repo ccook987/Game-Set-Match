@@ -1,6 +1,9 @@
 export const initialState = {
   gameById: {
-    name: null,
-    id: 0
+    1: {
+      title: 'Harry Potter',
+      id: 1,
+      gameArray: []
+    }
   }
 };

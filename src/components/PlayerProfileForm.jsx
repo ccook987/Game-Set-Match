@@ -10,6 +10,7 @@ class PlayerProfileForm extends Component {
       gameTitle: '',
       platformUserId: '',
       players: [],
+      googleEmail: '',
       user: null
     }
     this.handleChange = this.handleChange.bind(this);
@@ -42,7 +43,7 @@ class PlayerProfileForm extends Component {
       gameTitle: '',
       platformUserId: ''
     });
-    console.log(this.state.user.email);                                                                                                                                 
+    console.log(this.state.user.email);
   }
 
   logout() {
