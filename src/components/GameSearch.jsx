@@ -1,6 +1,5 @@
 import React from 'react';
 import { fetchGameTitle } from './../actions';
-import { receiveGames } from './../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -20,17 +19,15 @@ function GameSearch({dispatch, id}){
           console.log('game searched:');
           console.log(input.value.trim());
           input.value = '';
-          dispatch(receiveGames(id));
+          // dispatch(receiveGames(id));
         }}>
         <input placeholder="Game Title" ref={node => {
             input = node;
           }}></input>
         <button>Submit</button>
       </form>
-
-      //This is where search results display
       <div>
-    
+
       </div>
     </div>
   );
