@@ -5,6 +5,7 @@ class PlayerProfileForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      games: [],
       players: [],
       user: null
     }
@@ -65,6 +66,11 @@ class PlayerProfileForm extends Component {
       });
   }
 
+  removePlayer(playerId) {
+    const playerRef = firebase.database().ref(`/players/${playerId}`);
+    playerRef.remove();
+  }
+
   componentDidMount() {
     const playerRef = firebase.database().ref('players');
     playerRef.on('value', (snapshot) => {
@@ -84,6 +90,8 @@ class PlayerProfileForm extends Component {
         players: newState
       });
     });
+
+
 
     auth.onAuthStateChanged((user) => {
       if (user) {
