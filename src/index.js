@@ -6,14 +6,17 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import middlewareLogger from './middleware/middleware-logger';
 import { Provider } from 'react-redux';
-import gameSelectionReducer from './reducers/gameSelectionReducer';
+import rootReducer from './reducers/index';
 import thunkMiddleware from 'redux-thunk';
 
 var firebase = require('firebase');
 var firebaseui = require('firebaseui');
 
-const store = createStore(gameSelectionReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+);
 
 ReactDOM.render(
   <Provider store={store}>

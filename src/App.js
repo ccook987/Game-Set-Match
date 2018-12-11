@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GameSearch from './components/GameSearch';
 import './App.scss';
 import PlayerProfileForm from './components/PlayerProfileForm';
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
@@ -14,4 +15,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state =>  {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(App);

@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
 import firebase, { auth, provider } from '../firebase.js';
+import { connect } from 'react-redux';
+import { loginUsers } from '../actions/index';
 
 class PlayerProfileForm extends Component {
   constructor(props) {
     super(props);
+    const { dispatch } = props;
     this.state = {
-      games: [],
-      players: [],
-      user: null
+      // players: [],
+      // user: null
     }
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-    console.log(this.state);
   }
 
   handleSubmit(e) {
@@ -41,8 +35,6 @@ class PlayerProfileForm extends Component {
       gameTitle: '',
       platformUserId: ''
     });
-    // console.log(this.state.user.email); // these two console logs match
-    // console.log(player.googleEmail);
   }
 
 
@@ -55,67 +47,63 @@ class PlayerProfileForm extends Component {
     });
   }
 
-  login() {
-    auth.signInWithPopup(provider)
-      .then((result) => {
-        const user = result.user;
-        this.setState({
-          user,
-          // googleEmail: user.email
-        });
-      });
-  }
+  // login() {  probs can delete
+  //   auth.signInWithPopup(provider)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       this.setState({
+  //         user,
+  //       });
+  //     });
+  // }
 
   removePlayer(playerId) {
     const playerRef = firebase.database().ref(`/players/${playerId}`);
     playerRef.remove();
   }
 
-  componentDidMount() {
-    const playerRef = firebase.database().ref('players');
-    playerRef.on('value', (snapshot) => {
-      let players = snapshot.val();
-      let newState = [];
-      for (let player in players) {
-        newState.push({
-          id: player,
-          playername: players[player].playername,
-          platform: players[player].platform,
-          gameTitle: players[player].gameTitle,
-          platformUserId: players[player].platformUserId,
-          googleEmail: players[player].googleEmail
-        })
-      }
-      this.setState({
-        players: newState
-      });
-    });
+  // componentDidMount() {
+  //   const playerRef = firebase.database().ref('players');
+  //   playerRef.on('value', (snapshot) => {
+  //     let players = snapshot.val();
+  //     let newState = [];
+  //     for (let player in players) {
+  //       newState.push({
+  //         id: player,
+  //         playername: players[player].playername,
+  //         platform: players[player].platform,
+  //         gameTitle: players[player].gameTitle,
+  //         platformUserId: players[player].platformUserId,
+  //         googleEmail: players[player].googleEmail
+  //       })
+  //     }
+  //     this.setState({
+  //       players: newState
+  //     });
+  //   });
 
-
-
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-
-      }
-    });
-  }
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       this.setState({ user });
+  //     }
+  //   });
+  // }
 
   render() {
-    // console.log(this.state.user.displayName); can get to user but not the next one
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div>
         <div>
-          {this.state.user ?
+          {this.props.user ?
             <button onClick={this.logout}>Log Out</button>
             :
-            <button onClick={this.login}>Log In</button>
+            <button onClick={e => {e.preventDefault();
+              this.props.dispatch(loginUsers())}}>Log In</button>
           }
           {this.state.user ?
               <div>
                 <div className='user-profile'>
-                  <img src={this.state.user.photoURL} />
+
                 </div>
                 <div className='container'>
                   <form onSubmit={this.handleSubmit}>
@@ -133,8 +121,7 @@ class PlayerProfileForm extends Component {
                         return (
                           <li key={player.id}>
                             <h3>{player.playername}
-                              {player.googleEmail === this.state.user.email ?
-                  <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
+
                             </h3>
                             <p>Platform: {player.platform}</p>
                             <p>Game: {player.gameTitle}</p>
@@ -156,7 +143,10 @@ class PlayerProfileForm extends Component {
     );
   }
 }
-// {player.playername === this.state.user.username ?
-//   <button onClick={() => this.removePlayer(player.id)}>Delete Profile</button> : null}
+// {player.googleEmail === this.state.user.email ?
+// <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
 
-export default PlayerProfileForm;
+
+// <img src={this.state.user.photoURL} />
+
+export default connect()(PlayerProfileForm);
