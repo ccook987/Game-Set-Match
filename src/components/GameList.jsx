@@ -18,7 +18,7 @@ class GameList extends React.Component {
       return (
         <ul>
           {gameArray.gameArray.map(game =>
-            <li  key={game.id}>{game.name}</li>
+            <li key={game.id}>{game.name}</li>
           )}
         </ul>
       );
