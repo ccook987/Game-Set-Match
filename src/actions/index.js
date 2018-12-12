@@ -1,5 +1,47 @@
 import v4 from 'uuid/v4';
 import * as types from './../constants/ActionTypes';
+/* eslint-disable */
+const firebase = require('firebase/app');
+require('firebase/auth');
+import FirebaseAuth from 'react-firebaseui';
+import constants from './../../src/constants';
+const { c } = constants;
+let { firebaseConfig } = constants;
+
+
+firebase.initializeApp(firebaseConfig);
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export const auth = firebase.auth()
+/* eslint-enable */
+
+export function newUserLogin() {
+  return function (dispatch) {
+    auth.signInWithPopup(googleAuthProvider).then(result => {
+      // const token = result.credential.accessToken;
+      const user = result.user;
+      dispatch(userLogin(user));
+    })
+  }
+}
+
+export const userLogin = (user) => ({
+  type: types.USER_LOGIN,
+  user
+});
+
+export function newUserLogout() {
+  return function (dispatch) {
+    auth.signOut().then(result => {
+      dispatch(userLogout());
+    });
+  }
+}
+
+export const userLogout = (user) => ({
+  type: types.USER_LOGOUT,
+  user: null,
+})
+
 
 export const fetchGamesBegin = (title, id) => ({
   type: types.FETCH_GAMES_BEGIN,

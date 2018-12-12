@@ -10,17 +10,19 @@ import { createStore, applyMiddleware } from 'redux';
 import middlewareLogger from './middleware/middleware-logger';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
+import getLoggedInUserReducer from './reducers/getLoggedInUserReducer';
+import { HashRouter } from 'react-router-dom';
 
-var firebase = require('firebase');
-var firebaseui = require('firebaseui');
 
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <HashRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </HashRouter>,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
