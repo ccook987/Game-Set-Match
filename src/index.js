@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import rootReducer from './reducers';
 import fetchGameResultsReducer from './reducers/fetchGameResultsReducer';
 import { createStore, applyMiddleware } from 'redux';
 import middlewareLogger from './middleware/middleware-logger';
@@ -12,7 +13,7 @@ import thunkMiddleware from 'redux-thunk';
 var firebase = require('firebase');
 var firebaseui = require('firebaseui');
 
-const store = createStore(fetchGameResultsReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
 
 ReactDOM.render(

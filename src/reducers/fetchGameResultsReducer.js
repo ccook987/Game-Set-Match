@@ -9,7 +9,8 @@ const fetchGameResultsReducer = (state = initialState, action) => {
     case types.FETCH_GAMES_BEGIN:
       return {
         loading: true,
-        error: null
+        error: null,
+        gameArray: state.gameArray
       };
 
       // All done: set loading "false".
@@ -28,8 +29,7 @@ const fetchGameResultsReducer = (state = initialState, action) => {
     case types.FETCH_GAMES_FAILURE:
     return {
       loading: false,
-      error: action.payload.error,
-      gameArray: []
+      error: action.payload.error
     };
 
 
