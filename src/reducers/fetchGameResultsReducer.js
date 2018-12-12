@@ -32,7 +32,6 @@ const fetchGameResultsReducer = (state = initialState, action) => {
       error: action.payload.error
     };
 
-
 // ALWAYS have a default case in a reducer
   default:
     return state;

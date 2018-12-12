@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers';
 import fetchGameResultsReducer from './reducers/fetchGameResultsReducer';
+import selectGameFromListReducer from './reducers/selectGameFromListReducer';
 import { createStore, applyMiddleware } from 'redux';
 import middlewareLogger from './middleware/middleware-logger';
 import { Provider } from 'react-redux';

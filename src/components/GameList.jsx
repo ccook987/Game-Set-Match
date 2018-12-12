@@ -7,18 +7,17 @@ class GameList extends React.Component {
 
   render() {
     const { error, loading, gameArray } = this.props;
-    console.log(gameArray);
+    console.log(gameArray.gameArray);
     if (error) {
       return <div>Error! {error.message}</div>
     }
     if (loading) {
       return <div>Loading...</div>;
     }
-    if(loading!==true) {
-      console.log(gameArray);
+    if(loading !==true) {
       return (
         <ul>
-          {gameArray.map(game =>
+          {gameArray.gameArray.map(game =>
             <li  key={game.id}>{game.name}</li>
           )}
         </ul>
