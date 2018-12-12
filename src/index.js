@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers';
-import fetchGameResultsReducer from './reducers/fetchGameResultsReducer';
-import selectGameFromListReducer from './reducers/selectGameFromListReducer';
 import { createStore, applyMiddleware } from 'redux';
 import middlewareLogger from './middleware/middleware-logger';
 import { Provider } from 'react-redux';
@@ -14,8 +12,12 @@ import getLoggedInUserReducer from './reducers/getLoggedInUserReducer';
 import { HashRouter } from 'react-router-dom';
 
 
+
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+);
 
 ReactDOM.render(
   <HashRouter>

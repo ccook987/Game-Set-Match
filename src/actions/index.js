@@ -19,15 +19,17 @@ export function newUserLogin() {
     auth.signInWithPopup(googleAuthProvider).then(result => {
       // const token = result.credential.accessToken;
       const user = result.user;
-      dispatch(userLogin(user));
+      dispatch(userLogin(result.user));
     })
   }
 }
 
-export const userLogin = (user) => ({
+export const userLogin = (user) => {
+return ({
   type: types.USER_LOGIN,
   user
 });
+}
 
 export function newUserLogout() {
   return function (dispatch) {

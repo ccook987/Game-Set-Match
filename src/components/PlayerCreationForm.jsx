@@ -27,8 +27,8 @@ class PlayerCreationForm extends Component {
       playerName: this.state.playerName,
       platform: this.state.platform,
       gameTitle: this.state.gameTitle,
-      platformUserId: this.state.platformUserId
-      // user: this.state.user.displayName || this.state.user.email
+      platformUserId: this.state.platformUserId,
+      user: this.state.user.displayName || this.state.user.email
     }
     playerRef.push(player);
     this.setState({
@@ -37,7 +37,7 @@ class PlayerCreationForm extends Component {
       gameTitle: '',
       platformUserId: ''
     });
-    console.log(player);
+    console.log(this.state);
   }
 
   componentDidMount() {
@@ -54,9 +54,12 @@ class PlayerCreationForm extends Component {
           platformUserId: players[player].platformUserId
         })
       }
+      console.log(newState);
       this.setState({
         players: newState
       });
+      console.log(this.state);
+
     });
 
     auth.onAuthStateChanged((user) => {
@@ -67,13 +70,45 @@ class PlayerCreationForm extends Component {
   }
 
   render() {
-    return(
-      <div>
-        <h2>Bo</h2>
+    const template = (this.props.state.user) ?
+    <div>
+      <div className='container'>
+        <form onSubmit={this.handleSubmit}>
+          <input id="playerName" type="text" name="playerName" placeholder="Name" value={this.props.playerName} onChange={this.handleChange} />
+          <input id="platform" type="text" name="platform" placeholder="Platform" value={this.props.platform} onChange={this.handleChange} />
+          <input id="gameTitle" type="text" name="gameTitle" placeholder="Game" value={this.props.gameTitle} onChange={this.handleChange} />
+          <input id="platformUserId" type="text" name="platformUserId" placeholder="Steam/XBOX/PS ID" value={this.props.platformUserId} onChange={this.handleChange} />
+          <button type='submit'>Submit</button>
+        </form>
       </div>
-    )
-  }
+      <section className='display-player'>
+        <div className='wrapper'>
+          <ul>
+            {this.state.players.map((player) => {
+              return (
+                <li key={player.id}>
+                  <h3>{player.playername}
+                    {player.user === this.state.user.displayName || player.user === this.state.user.email ?
+                      <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
+                      </h3>
+                      <p>Platform: {player.platform}</p>
+                      <p>Game: {player.gameTitle}</p>
+                      <p>Platform ID: {player.platformUserId}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </section>
+
+      </div> :  <div><h1>Please Login!</h1></div>
+  return(template);
+
+    }
+
 }
+
+
 
 
   const mapStateToProps = state => { //state.user is coming in as null from initialState

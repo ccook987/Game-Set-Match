@@ -9,6 +9,7 @@ import PlayerCreationForm from './components/PlayerCreationForm';
 
 class App extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="App">
           <Header />

@@ -4,12 +4,10 @@ import fetchGameResultsReducer from './fetchGameResultsReducer';
 import selectGameFromListReducer from './selectGameFromListReducer';
 import getLoggedInUserReducer from './getLoggedInUserReducer';
 
-
 const rootReducer = combineReducers({
   gameArray: fetchGameResultsReducer,
-  player: selectGameFromListReducer,
+  selectedGame: selectGameFromListReducer,
   user: getLoggedInUserReducer
 });
-
 
 export default rootReducer;

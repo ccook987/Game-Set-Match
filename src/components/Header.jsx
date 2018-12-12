@@ -18,7 +18,7 @@ function Header(props, { dispatch }) { //dispatch is coming thru
 
   return(
     <div>
-      <h1>header here</h1>
+
       <button onClick={handleNewLogin}>Login Here Please</button>
       <button onClick={handleLogout}>Logout Here Please</button>
     </div>
