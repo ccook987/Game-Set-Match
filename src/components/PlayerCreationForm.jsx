@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { auth, googleAuthProvider } from '../actions';
-
+import GameList from './GameList';
+import GameSearch from './GameSearch';
 
 class PlayerCreationForm extends Component {
   constructor(props, { state }) {
@@ -22,11 +23,12 @@ class PlayerCreationForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.props);
     const playerRef = firebase.database().ref('players');
     const player = {
       playerName: this.state.playerName,
       platform: this.state.platform,
-      gameTitle: this.state.gameTitle,
+      gameTitle: this.props.state.selectedGame.gameTitle,
       platformUserId: this.state.platformUserId,
       user: this.state.user.displayName || this.state.user.email
     }
@@ -70,17 +72,29 @@ class PlayerCreationForm extends Component {
   }
 
   render() {
+    console.log(this.props.selectedGame);
+    const work = this.props.state.selectedGame.gameTitle;
     const template = (this.props.state.user) ?
     <div>
       <div className='container'>
         <form onSubmit={this.handleSubmit}>
           <input id="playerName" type="text" name="playerName" placeholder="Name" value={this.props.playerName} onChange={this.handleChange} />
+
+
           <input id="platform" type="text" name="platform" placeholder="Platform" value={this.props.platform} onChange={this.handleChange} />
-          <input id="gameTitle" type="text" name="gameTitle" placeholder="Game" value={this.props.gameTitle} onChange={this.handleChange} />
+
+
+          <input id="gameTitle" type="text" name="gameTitle" value={this.props.state.selectedGame.gameTitle} />
+
+
           <input id="platformUserId" type="text" name="platformUserId" placeholder="Steam/XBOX/PS ID" value={this.props.platformUserId} onChange={this.handleChange} />
           <button type='submit'>Submit</button>
         </form>
       </div>
+
+      <GameSearch/>
+      <GameList/>
+
       <section className='display-player'>
         <div className='wrapper'>
           <ul>

@@ -7,9 +7,11 @@ const selectGameFromListReducer = (state = initialState.selectedGame, action) =>
   let newSelectedGameStateSlice;
   switch (action.type) {
     case types.SELECT_GAME:
-    const selectedGame = action.name;
+    const selectedGame = action.gameTitle;
     console.log(selectedGame);
-    newSelectedGameStateSlice = Object.assign({selectedGame}, state);
+    console.log(action.gameTitle);
+    console.log(typeof(selectedGame));
+    newSelectedGameStateSlice = Object.assign({}, state, {"gameTitle" : selectedGame});
     console.log(newSelectedGameStateSlice);
     return newSelectedGameStateSlice;
   default:

@@ -7,20 +7,38 @@ import constants from './../constants';
 
 
 class GameList extends React.Component {
+  constructor(props, { state, dispatch }) {
+    super(props, { state });
+    this.handleChange = this.handleChange.bind(this);
+  }
 
- handleAddingGame(props, selectedGame, game) {
-  const {dispatch} = this.props;
-  console.log(props);
-  const action = {
-    type: types.SELECT_GAME,
-    name: props
-  };
-  console.log(selectedGame + 'selected game');
-  console.log(dispatch + 'dispatch');
-  console.log(this.props + 'props');
+//  handleAddingGame(props, selectedGame, game) {
+//   const {dispatch} = this.props;
+//   console.log(props);
+//   const action = {
+//     type: types.SELECT_GAME,
+//     name: props
+//   };
+//   console.log(selectedGame + 'selected game');
+//   console.log(dispatch + 'dispatch');
+//   console.log(this.props + 'props');
+//
+//   dispatch(action);
+// }
 
-  dispatch(action);
-}
+  handleChange(e) {
+    let newThingy = {};
+    let gameTitle = e.target.value;
+    let action = {
+      type: types.SELECT_GAME,
+      gameTitle
+    }
+console.log(action);
+    // Object.assign({}, this.state);
+    // console.log(this.state);
+    this.props.dispatch(action);
+     console.log(this.state);
+   }
 
 
 
@@ -36,11 +54,11 @@ class GameList extends React.Component {
     }
     if(!loading) {
       return (
-        <ul>
+        <select onChange={this.handleChange}>
           {gameArray.gameArray.map(game =>
-            <li onClick={() => {this.handleAddingGame(game.name)}} key={game.id}>{game.name}</li>
+            <option onChange={() => {this.handleAddingGame(game.name)}} key={game.id}>{game.name}</option>
           )}
-        </ul>
+        </select>
       );
 
     }

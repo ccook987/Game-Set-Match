@@ -14,8 +14,6 @@ class App extends Component {
       <div className="App">
           <Header />
           <PlayerCreationForm />
-          <GameSearch/>
-          <GameList/>
       </div>
     );
   }
