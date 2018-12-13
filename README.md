@@ -1,4 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **Game Set Match**
+
+#### _A matching service for lonely gamers., 12.12.2018_
+
+###### By Colin Cook, Nikki Wong, Kendra Kelly & Julianne Soifer
+
+
+## Description
+
+Just got a new game and looking for someone to play? Need some more players on your team? You can create a profile and get matched up with other players.
+
+
+
+## Images
+
+##### _Login Screen_
+![Login Screen](src/assets/images/ss2.png)
+
+##### _Game Search & Create Player Form_
+![Game Search & Create Player Form](src/assets/images/ss1.png)
+
+##### _Player Card List_
+![Player Card List](src/assets/images/ss3.png)
+
+
+## Setup/Installation Requirements
+
+Clone this repository to your Desktop and run the following command in the terminal
+
+### `npm install`
 
 ## Available Scripts
 
@@ -27,18 +56,26 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* NPM
+* Sass
+* React
+* Redux
+* Create react app
+* Firebase
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Support and contact details
 
-## Learn More
+We would love to hear from you! If you have any issues with this application or have any suggestions on how it could be improved, please let us know.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contact us at [ccook987@gmail.com](mailto:ccook987@gmail.com)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+### License
+
+This software is licensed under the MIT license.
+
+Copyright (c) 2018 Colin Cook, Nikki Wong, Kendra Kelly, Julianne Soifer
