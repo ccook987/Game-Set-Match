@@ -39,7 +39,7 @@ export function newUserLogout() {
   }
 }
 
-export const userLogout = (user) => ({
+export const userLogout = (user = null) => ({
   type: types.USER_LOGOUT,
   user: null,
 })

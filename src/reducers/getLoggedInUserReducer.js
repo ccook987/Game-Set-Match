@@ -13,9 +13,7 @@ const getLoggedInUserReducer = (state = initialState.user, action) => {
 
 
     case types.USER_LOGOUT:
-    newLoggedInUserStateSlice = Object.assign({},
-      (user: null)
-    );
+    newLoggedInUserStateSlice = null;
     return newLoggedInUserStateSlice;
   default:
     return state;
