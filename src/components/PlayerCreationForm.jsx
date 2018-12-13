@@ -75,7 +75,10 @@ class PlayerCreationForm extends Component {
     console.log(this.props.selectedGame);
     const work = this.props.state.selectedGame.gameTitle;
     const template = (this.props.state.user) ?
+
     <div className='formDiv'>
+      <GameSearch / >
+      <GameList />
       <div className='container'>
         <h2>Create a new player</h2>
         <form className='form' onSubmit={this.handleSubmit}>
