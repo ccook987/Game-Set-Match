@@ -77,10 +77,16 @@ class PlayerCreationForm extends Component {
     const template = (this.props.state.user) ?
 
     <div className='formDiv'>
-      <GameSearch / >
-      <GameList />
+      <h2 className='h2'>Create a new player</h2>
+      <div className='game-search'>
+        <h3 className='h3'>Search for a game</h3>
+        <GameSearch / >
+      </div>
+      <div className='game-select'>
+        <h3 className='h3'>Select a game</h3>
+        <GameList />
+      </div>
       <div className='container'>
-        <h2>Create a new player</h2>
         <form className='form' onSubmit={this.handleSubmit}>
           <input id="playerName" type="text" name="playerName" placeholder="Name" value={this.props.playerName} onChange={this.handleChange} />
 
@@ -88,7 +94,7 @@ class PlayerCreationForm extends Component {
           <input id="platform" type="text" name="platform" placeholder="Platform" value={this.props.platform} onChange={this.handleChange} />
 
 
-          <input id="gameTitle" type="text" name="gameTitle" value={this.props.state.selectedGame.gameTitle} />
+          <input id="gameTitle" type="text" name="gameTitle" value={this.props.state.selectedGame.gameTitle} readonly/>
 
 
           <input id="platformUserId" type="text" name="platformUserId" placeholder="Steam/XBOX/PS ID" value={this.props.platformUserId} onChange={this.handleChange} />

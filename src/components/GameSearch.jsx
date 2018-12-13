@@ -7,7 +7,7 @@ function GameSearch({dispatch, id}){
   let input;
   return (
     <div>
-      <form onSubmit={e => {
+      <form className='game-search' onSubmit={e => {
           e.preventDefault();
           if (!input.value.trim()) {
             return;
