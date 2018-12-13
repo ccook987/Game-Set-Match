@@ -254,3 +254,27 @@ input:focus {
     bottom: 10px;
   }
 }
+
+.your-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  img {
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  h3 {
+    color: white;
+    font-weight: 400;
+    margin: 5px;
+  }
+  h4 {
+    color: white;
+    font-weight: 300;
+    margin: 5px;
+  }
+  margin-bottom: 50px;
+}

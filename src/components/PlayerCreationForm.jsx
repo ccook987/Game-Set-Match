@@ -112,6 +112,13 @@ class PlayerCreationForm extends Component {
         <section className='display-player'>
           <div className='wrapper'>
             <h2>Current Players</h2>
+            <div className='your-profile'>
+              <img src={this.state.user.photoURL}></img>
+              <div>
+                <h3>{this.state.user.displayName}</h3>
+                <h4>{this.state.user.email}</h4>
+              </div>
+            </div>
             <ul>
               {this.state.players.map((player) => {
                 return (
