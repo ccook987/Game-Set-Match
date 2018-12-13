@@ -61,15 +61,15 @@ export const fetchGamesFailure = error => ({
   payload: { error }
 });
 
-// export const selectGame = game =>
-// ({
-//   type: types.SELECT_GAME,
-//   game
-// });
-//
-// export function fetchSelectedGame(game) {
-//   return game
-// }
+export const selectGame = name =>
+({
+  type: types.SELECT_GAME,
+  name
+});
+
+export function fetchSelectedGame(game) {
+  return game
+}
 
 
 const API_KEY = process.env.REACT_APP_VIDEO_GAME_API_KEY;

@@ -8,11 +8,12 @@ import constants from './../constants';
 
 class GameList extends React.Component {
 
- handleAddingGame(props, selectedGame, gameId) {
+ handleAddingGame(props, selectedGame, game) {
   const {dispatch} = this.props;
+  console.log(props);
   const action = {
     type: types.SELECT_GAME,
-    gameId: gameId
+    name: props
   };
   console.log(selectedGame + 'selected game');
   console.log(dispatch + 'dispatch');
@@ -25,19 +26,19 @@ class GameList extends React.Component {
 
   render() {
     const { error, loading, gameArray } = this.props;
-
-    console.log(gameArray.gameArray);
+    console.log(gameArray);
+    console.log(this.props.gameArray);
     if (error) {
       return <div>Error! {error.message}</div>
     }
     if (loading) {
       return <div>Loading...</div>;
     }
-    if(loading !==true) {
+    if(!loading) {
       return (
         <ul>
           {gameArray.gameArray.map(game =>
-            <li onClick={() => {this.handleAddingGame(this.props.gameId)}} key={game.id}>{game.name}</li>
+            <li onClick={() => {this.handleAddingGame(game.name)}} key={game.id}>{game.name}</li>
           )}
         </ul>
       );

@@ -2,15 +2,18 @@ import constants from './../constants';
 const { initialState, types } = constants;
 
 
-const selectGameFromListReducer = (state = {}, action) => {
+const selectGameFromListReducer = (state = initialState.selectedGame, action) => {
+  let selectedGame;
+  let newSelectedGameStateSlice;
   switch (action.type) {
     case types.SELECT_GAME:
-      return {
-        selectedGame: action.gameId,
-        id: action.gameId
-      }
-    default:
-      return state;
+    const selectedGame = action.name;
+    console.log(selectedGame);
+    newSelectedGameStateSlice = Object.assign({selectedGame}, state);
+    console.log(newSelectedGameStateSlice);
+    return newSelectedGameStateSlice;
+  default:
+    return state;
 
   }
 }
