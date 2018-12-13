@@ -7,7 +7,8 @@ const getLoggedInUserReducer = (state = initialState.user, action) => {
   switch (action.type) {
     case types.USER_LOGIN:
     const user =  action.user;
-    newLoggedInUserStateSlice = Object.assign({}, user);
+    const googleEmail = action.user.email;
+    newLoggedInUserStateSlice = Object.assign({}, user, googleEmail);
 
     return newLoggedInUserStateSlice;
 

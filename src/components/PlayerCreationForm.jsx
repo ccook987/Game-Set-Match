@@ -30,6 +30,7 @@ class PlayerCreationForm extends Component {
       platform: this.state.platform,
       gameTitle: this.props.state.selectedGame.gameTitle,
       platformUserId: this.state.platformUserId,
+      googleEmail: this.state.user.email,
       user: this.state.user.displayName || this.state.user.email
     }
     playerRef.push(player);
@@ -40,6 +41,11 @@ class PlayerCreationForm extends Component {
       platformUserId: ''
     });
     console.log(this.state);
+  }
+
+  removePlayer(playerId) {
+    const playerRef = firebase.database().ref(`/players/${playerId}`);
+    playerRef.remove();
   }
 
   componentDidMount() {
@@ -53,7 +59,8 @@ class PlayerCreationForm extends Component {
           playername: players[player].playerName,
           platform: players[player].platform,
           gameTitle: players[player].gameTitle,
-          platformUserId: players[player].platformUserId
+          platformUserId: players[player].platformUserId,
+          googleEmail: players[player].googleEmail
         })
       }
       console.log(newState);
@@ -110,6 +117,8 @@ class PlayerCreationForm extends Component {
                         <p><span className='bold'>Platform:</span> {player.platform}</p>
                         <p><span className='bold'>Game:</span> {player.gameTitle}</p>
                         <p><span className='bold'>Platform ID:</span> {player.platformUserId}</p>
+                        {player.googleEmail === this.state.user.email ?
+                  <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
                       </li>
                     )
                   })}
