@@ -124,7 +124,7 @@ class PlayerCreationForm extends Component {
                         <p><span className='bold'>Game:</span> {player.gameTitle}</p>
                         <p><span className='bold'>Platform ID:</span> {player.platformUserId}</p>
                         {player.googleEmail === this.state.user.email ?
-                  <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
+                  <button className='remove' onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
                       </li>
                     )
                   })}

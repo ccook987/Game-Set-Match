@@ -228,3 +228,29 @@ input:focus {
     font-size: 15px;
   }
 }
+
+.remove {
+  width: 50%;
+  font-family: 'Lato', sans-serif;
+  padding: {
+    left: 8px;
+    right: 8px;
+    top: 5px;
+    bottom: 5px;
+  }
+  font-size: 16px;
+  border-radius: 30px;
+  background-color: $black;
+  border: none;
+  color: white;
+  transition: all .2s cubic-bezier(0.68, -0.55, 0.22, 1.55);
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    color: $black;
+  }
+  margin: {
+    top: 10px;
+    bottom: 10px;
+  }
+}
