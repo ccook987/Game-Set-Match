@@ -1,12 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSelectedGame } from './../actions';
+import { fetchSelectedGame, selectGame } from './../actions';
+import * as types from './../constants/ActionTypes';
+import constants from './../constants';
+
 
 
 class GameList extends React.Component {
 
+ handleAddingGame(props, selectedGame, gameId) {
+  const {dispatch} = this.props;
+  const action = {
+    type: types.SELECT_GAME,
+    gameId: gameId
+  };
+  console.log(selectedGame + 'selected game');
+  console.log(dispatch + 'dispatch');
+  console.log(this.props + 'props');
+
+  dispatch(action);
+}
+
+
+
   render() {
     const { error, loading, gameArray } = this.props;
+
     console.log(gameArray.gameArray);
     if (error) {
       return <div>Error! {error.message}</div>
@@ -18,7 +37,7 @@ class GameList extends React.Component {
       return (
         <ul>
           {gameArray.gameArray.map(game =>
-            <li  key={game.id}>{game.name}</li>
+            <li onClick={() => {this.handleAddingGame(this.props.gameId)}} key={game.id}>{game.name}</li>
           )}
         </ul>
       );
@@ -33,7 +52,8 @@ class GameList extends React.Component {
 const mapStateToProps = state => ({
   gameArray: state.gameArray,
   loading: state.loading,
-  error: state.error
+  error: state.error,
+  selectedGame: state.selectedGame
 });
 
 export default connect(mapStateToProps)(GameList);

@@ -7,7 +7,7 @@ import selectGameFromListReducer from './selectGameFromListReducer';
 
 const rootReducer = combineReducers({
   gameArray: fetchGameResultsReducer,
-  player: selectGameFromListReducer
+  selectedGame: selectGameFromListReducer
 });
 
 

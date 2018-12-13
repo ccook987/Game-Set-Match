@@ -15,6 +15,7 @@ function GameSearch({dispatch, id}){
           dispatch(fetchGameTitle(input.value.trim()));
           console.log('game searched:');
           console.log(input.value.trim());
+          console.log(dispatch);
           input.value = '';
         }}>
         <input placeholder="Game Title" ref={node => {
