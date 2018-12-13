@@ -133,7 +133,7 @@ class PlayerCreationForm extends Component {
             </section>
       </div>
 
-      </div> :  <div><h1 className='loginMessage'>Please Log In.</h1></div>
+    </div> :  <div><h1 className='loginMessage'>Please log in.</h1></div>
   return(template);
 
     }
