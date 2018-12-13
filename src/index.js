@@ -13,6 +13,7 @@ import { HashRouter } from 'react-router-dom';
 
 
 
+
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
 let unsubscribe = store.subscribe(() =>

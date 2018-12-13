@@ -71,9 +71,10 @@ class PlayerCreationForm extends Component {
 
   render() {
     const template = (this.props.state.user) ?
-    <div>
+    <div className='formDiv'>
       <div className='container'>
-        <form onSubmit={this.handleSubmit}>
+        <h2>Create a new player</h2>
+        <form className='form' onSubmit={this.handleSubmit}>
           <input id="playerName" type="text" name="playerName" placeholder="Name" value={this.props.playerName} onChange={this.handleChange} />
           <input id="platform" type="text" name="platform" placeholder="Platform" value={this.props.platform} onChange={this.handleChange} />
           <input id="gameTitle" type="text" name="gameTitle" placeholder="Game" value={this.props.gameTitle} onChange={this.handleChange} />
@@ -81,27 +82,30 @@ class PlayerCreationForm extends Component {
           <button type='submit'>Submit</button>
         </form>
       </div>
-      <section className='display-player'>
-        <div className='wrapper'>
-          <ul>
-            {this.state.players.map((player) => {
-              return (
-                <li key={player.id}>
-                  <h3>{player.playername}
-                    {player.user === this.state.user.displayName || player.user === this.state.user.email ?
-                      <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
-                      </h3>
-                      <p>Platform: {player.platform}</p>
-                      <p>Game: {player.gameTitle}</p>
-                      <p>Platform ID: {player.platformUserId}</p>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </section>
+      <div className='player-div'>
+        <section className='display-player'>
+          <div className='wrapper'>
+            <h2>Current Players</h2>
+            <ul>
+              {this.state.players.map((player) => {
+                return (
+                  <li key={player.id}>
+                    <h3>{player.playername}
+                      {player.user === this.state.user.displayName || player.user === this.state.user.email ?
+                        <button onClick={() => this.removePlayer(player.id)}>Remove Player</button> : null}
+                        </h3>
+                        <p><span className='bold'>Platform:</span> {player.platform}</p>
+                        <p><span className='bold'>Game:</span> {player.gameTitle}</p>
+                        <p><span className='bold'>Platform ID:</span> {player.platformUserId}</p>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            </section>
+      </div>
 
-      </div> :  <div><h1>Please Login!</h1></div>
+      </div> :  <div><h1 className='loginMessage'>Please Log In.</h1></div>
   return(template);
 
     }
